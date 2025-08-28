@@ -1,42 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Coffee Business Design System - Warm & Cozy */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Coffee Business Color Palette */
+    --background: 45 60% 89%; /* Warm cream #F3E5C3 */
+    --foreground: 25 25% 25%; /* Dark coffee brown */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 45 70% 95%; /* Lighter cream for cards */
+    --card-foreground: 25 25% 25%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 45 70% 95%;
+    --popover-foreground: 25 25% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 100 30% 72%; /* Sage green #ABC8A2 */
+    --primary-foreground: 45 60% 89%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 45 40% 80%; /* Muted cream */
+    --secondary-foreground: 25 25% 25%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 45 30% 85%;
+    --muted-foreground: 25 15% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 100 35% 65%; /* Deeper sage */
+    --accent-foreground: 45 60% 89%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 45 60% 89%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 45 30% 82%;
+    --input: 45 30% 82%;
+    --ring: 100 30% 72%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Coffee-themed gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(45, 60%, 89%), hsl(100, 30%, 72%));
+    --gradient-warm: linear-gradient(180deg, hsl(45, 70%, 95%), hsl(45, 50%, 85%));
+    --gradient-accent: linear-gradient(135deg, hsl(100, 35%, 65%), hsl(100, 30%, 72%));
+
+    /* Shadows with coffee warmth */
+    --shadow-soft: 0 4px 20px -8px hsl(25, 25%, 25%, 0.15);
+    --shadow-warm: 0 8px 30px -12px hsl(100, 30%, 72%, 0.25);
+    --shadow-hover: 0 12px 40px -16px hsl(25, 25%, 25%, 0.2);
+
+    /* Smooth transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-gentle: all 0.2s ease-out;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +115,90 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+}
+
+@layer components {
+  /* Coffee Business Component Styles */
+  .coffee-hero {
+    background: var(--gradient-hero);
+    box-shadow: var(--shadow-warm);
+  }
+
+  .coffee-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    box-shadow: var(--shadow-soft);
+    transition: var(--transition-smooth);
+  }
+
+  .coffee-card:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  .coffee-button {
+    background: var(--gradient-accent);
+    transition: var(--transition-gentle);
+  }
+
+  .coffee-button:hover {
+    box-shadow: var(--shadow-warm);
+    transform: translateY(-1px);
+  }
+
+  .coffee-nav-link {
+    position: relative;
+    transition: var(--transition-gentle);
+  }
+
+  .coffee-nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    background: hsl(var(--primary));
+    transition: var(--transition-gentle);
+    transform: translateX(-50%);
+  }
+
+  .coffee-nav-link:hover::after {
+    width: 100%;
+  }
+
+  .section-fade-in {
+    animation: fadeInUp 0.8s ease-out;
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  }
+
+  .font-playfair {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
